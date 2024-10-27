@@ -9,16 +9,16 @@ import 'package:logging/logging.dart';
 /// Minimal example of using [cartesia tts](https://www.cartesia.ai/) to produce
 /// text-to-speech audio and play it using the
 /// [flutter_soloud](https://github.com/alnitak/flutter_soloud) package.
-/// 
+///
 /// The workflow:
 /// - Authenticate with the Cartesia API
 /// - Setup a text-to-speech message to request PCM audio to Cartesia and a
-/// corresponding flutter_soloud stream with the same format 
+/// corresponding flutter_soloud stream with the same format
 /// - Request text-to-speech audio
 /// - Play the audio at first chunk received
-/// 
+///
 /// Note: replace the `cartesiaApiKey` with your Cartesia API key.
-/// Note2: no stream buffering management. If the data comes slower than the 
+/// Note2: no stream buffering management. If the data comes slower than the
 /// rate of the flutter_soloud stream, the audio could have gaps.
 
 const cartesiaApiKey = '< YOUR CARTESIA API KEY >';
@@ -75,6 +75,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   AudioSource? source;
+
   /// When experiments and having a free Cartesia plan, consider to use
   /// a short text to do not consume too much of your API quota.
   final controller = TextEditingController(
@@ -97,6 +98,12 @@ class _MyHomePageState extends State<MyHomePage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
+              const Text(
+                'When experiments and having a free Cartesia plan, '
+                'consider to use a short text to do not consume too much '
+                'of your API quota.',
+                style: TextStyle(fontStyle: FontStyle.italic),
+              ),
               TextField(
                 controller: controller,
                 minLines: 3,
@@ -111,8 +118,8 @@ class _MyHomePageState extends State<MyHomePage> {
                   await SoLoud.instance.disposeAllSources();
                   source = null;
 
-                  final authenticated = await Cartesia.instance
-                      .autenticate(cartesiaApiKey);
+                  final authenticated =
+                      await Cartesia.instance.autenticate(cartesiaApiKey);
                   if (!authenticated) {
                     debugPrint('Failed to authenticate!');
                     return;
