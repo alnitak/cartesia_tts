@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_redundant_argument_values
+
 import 'dart:convert';
 import 'dart:io';
 
@@ -65,7 +67,7 @@ class Cartesia {
       sampleRate: 8000,
       channels: Channels.mono,
       pcmFormat: BufferPcmType.s16le,
-      onBuffering: () async {
+      onBuffering: (isBuffering, handle, time) async {
         debugPrint('buffering');
       },
     );
@@ -94,7 +96,7 @@ class Cartesia {
             currentSound,
             data,
           );
-        } on SoLoudPcmBufferFullOrStreamEndedCppException {
+        } on SoLoudPcmBufferFullCppException {
           debugPrint('pcm buffer full or stream already set '
               'to be ended');
           await channel?.sink.close(status.goingAway);

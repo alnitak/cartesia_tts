@@ -15,7 +15,7 @@ dependencies:
   flutter_soloud:
     git:
       url: git@github.com:alnitak/flutter_soloud.git
-      ref: websocket
+      ref: main
 
   freezed_annotation: ^2.4.4
   json_annotation: ^4.9.0
