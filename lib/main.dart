@@ -11,7 +11,8 @@ import 'package:logging/logging.dart';
 /// [flutter_soloud](https://github.com/alnitak/flutter_soloud) package.
 ///
 /// The workflow:
-/// - Authenticate with the Cartesia API
+/// - Authenticate with the Cartesia API (get the key from your Cartesia
+/// account and put it below)
 /// - Setup a text-to-speech message to request PCM audio to Cartesia and a
 /// corresponding flutter_soloud stream with the same format
 /// - Request text-to-speech audio
